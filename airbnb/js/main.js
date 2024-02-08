@@ -29,32 +29,32 @@ closeBtn.addEventListener("click", function() {
 // };
 
 // array of objects
-const rooms = [
-    {
-        name: 'Luxury King Room',
-        price: 300,
-        guests: 2,
-        description:
-        'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
-    },
-    {
-        name: 'Luxury King Room',
-        price: 300,
-        guests: 2,
-        description:
-        'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
-    },
-    {
-        name: 'Luxury King Room',
-        price: 300,
-        guests: 2,
-        description:
-        'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
-    },
-    
-]; // end of rooms
+// const rooms = [
+//     {
+//         name: 'Luxury King Room',
+//         price: 300,
+//         guests: 2,
+//         description:
+//         'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
+//     },
+//     {
+//         name: 'Luxury King Room',
+//         price: 300,
+//         guests: 2,
+//         description:
+//         'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
+//     },
+//     {
+//         name: 'Luxury King Room',
+//         price: 300,
+//         guests: 2,
+//         description:
+//         'A beautiful room with a king size bed, a private bathroom, and a balcony with a view of the ocean.',
+//     },
+// ]; // end of rooms
 
-rooms.forEach((room) => {
+function renderProperties(properties) {
+    properties.forEach((room) => {
 
     // create elements
     const roomArticle = document.createElement('article');
@@ -82,5 +82,11 @@ rooms.forEach((room) => {
     document.body.appendChild(roomArticle);
 
 }); // end of forEach
+} // end of render properties
 
-
+fetch('./js/properties.json')
+    .then((response) => response.json())
+    .then((data) => {
+        // console.log(data);
+        renderProperties(data);
+    });
