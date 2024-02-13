@@ -84,9 +84,38 @@ function renderProperties(properties) {
 }); // end of forEach
 } // end of render properties
 
-fetch('./js/properties.json')
-    .then((response) => response.json())
-    .then((data) => {
-        // console.log(data);
-        renderProperties(data);
+// fetch('./js/properties.json')
+//     .then((response) => response.json())
+//     .then((data) => {
+//         // console.log(data);
+//         renderProperties(data);
+//     });
+
+Promise.all([
+    // fetch 1
+    fetch('js/properties.json').then(response => response.json()),
+    // fetch 2
+    fetch('js/categories.json').then(response => response.json())
+    ])
+    .then(([properties, categories]) => {
+        //console.log({properties});
+        //console.log({categories});
+        categories.forEach(category => {
+        displayCategory(category, properties);
+      });
+    })
+    .catch((error) => {
+        console.error("There was a problem fetching the data:", error);
     });
+
+    const displayCategory = (category, properties) => {
+       //console.log({category})
+       const sectionElement = document.createElement('section');
+
+       const sectionTitle = document.createElement('h2');
+       sectionTitle.textContent = category.label.plural;
+
+       sectionElement.appendChild(sectionTitle);
+
+       document.body.appendChild(sectionElement);
+    } // end of displayCategory
