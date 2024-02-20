@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "prettier" // This line is not strictly necessary since "plugin:prettier/recommended" already includes it, but it's useful if you need to customize settings further.
+      ],
+      "rules": {
+        "prettier/prettier": "error" // Turns on Prettier errors as ESLint errors. Set to "warn" if you prefer warnings over errors.
+      }
+ }
