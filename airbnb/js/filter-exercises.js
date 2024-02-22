@@ -7,7 +7,7 @@ const filteredNumbers = numbers.filter((number) => {
     return number < 10; 
 }); // end of filter
 
-console.log({filteredNumbers});
+//console.log({filteredNumbers});
 
 
 // example 2
@@ -26,7 +26,7 @@ const filteredPeople = people.filter((person) => {
     return person.age < 30;
 }); // end of filter
 
-console.log({filteredPeople});
+//console.log({filteredPeople});
 
 
 // example #3
@@ -44,8 +44,45 @@ const filteredCars= cars.filter((car) => {
     return car.make === "Ford"; 
 }); // end of filter
 
-console.log({filteredCars});
+//console.log({filteredCars});
 
 
 // example #4
 // Fetch a JSON array of objects containing the SU men's basketball schedule
+
+
+// fetch('./js/schedule.json')
+//     .then((response) => response.json())
+//     .then((schedule) => {
+//         const februaryGames = schedule.filter(game => {
+//             // write your code here
+//             // so I didn't write any new code here but everything is appearing in my console log; I just needed to put this in the fetch
+        
+//             const dateObj = new Date(game.date); // convert the date string to a Date object
+//             return dateObj.getMonth() === 1; // February is the second month, so the index is 1, January is 0, March is 2, April is 3, etc.
+//         });
+//         console.log({februaryGames});
+//     });
+
+
+// example 4
+const filterGames = (games, monthIndex) => {
+    const filteredGames = games.filter((game) => {
+        const dateObject = new Date(game.date)
+        return dateObject.getMonth() === monthIndex
+    });
+    console.log({ filteredGames })
+} // end of filterGames
+
+// import schedule.json
+// convert it to json
+// do something with it
+fetch('js/schedule.json')
+    .then((response) => {
+        return response.json()
+})
+.then((data) => {
+    // console.log({data})
+    filterGames(data, 1);
+})
+.catch() // promise
